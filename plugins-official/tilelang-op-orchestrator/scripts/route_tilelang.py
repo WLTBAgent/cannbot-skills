@@ -74,9 +74,9 @@ def main(argv=None):
                 timeout=90,
                 check=False,
             )
-            evidence = json.loads(result.stdout)
             if result.returncode:
                 raise ValueError(f"hardware probe failed: {result.stderr.strip()}")
+            evidence = json.loads(result.stdout)
         platform = classify(evidence)
     except (OSError, ValueError, subprocess.TimeoutExpired) as error:
         print(
